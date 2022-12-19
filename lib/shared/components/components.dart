@@ -15,7 +15,7 @@ Widget buildDefaultButton({
     height: getProportionsScreenHeight(height),
     child: RaisedButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: kPrimaryColor,
+      color: Colors.blue,
       onPressed:register? (){return function!();}:null,
       child: Text(
         text,

@@ -77,13 +77,13 @@ class FileyLayout extends StatelessWidget {
         child: Column(
           children: [
             Icon(
-              Icons.bug_report_outlined,
+              Icons.upload,
               size: 25.0,
               color: Colors.blue,
             ),
 
             Text(
-              'Reports',
+              'Uploaded',
               style: TextStyle(
                 color: Colors.blue,
               ),
@@ -91,6 +91,7 @@ class FileyLayout extends StatelessWidget {
           ],
         ),
       ),
+
 
     ];
     var cubit = FileyCubit.get(context);

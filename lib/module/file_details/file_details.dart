@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:lottie/lottie.dart';
 
 import 'colors.dart';
 import 'model.dart';
@@ -13,12 +14,7 @@ class FileDetails extends StatelessWidget {
 
   final ProductController productController = Get.put(ProductController());
 
-  final List<SmProduct> smProducts = [
-    SmProduct(image: 'assets/images/product-1.png'),
-    SmProduct(image: 'assets/images/product-2.png'),
-    SmProduct(image: 'assets/images/product-3.png'),
-    SmProduct(image: 'assets/images/product-4.png'),
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,21 +24,15 @@ class FileDetails extends StatelessWidget {
         backgroundColor: AppColors.kBgColor,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Ionicons.chevron_back,
             color: Colors.black,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Ionicons.bag_outline,
-              color: Colors.black,
-            ),
-          ),
-        ],
+
       ),
       body: Column(
         children: [
@@ -50,7 +40,7 @@ class FileDetails extends StatelessWidget {
             height: MediaQuery.of(context).size.height * .35,
             padding: const EdgeInsets.only(bottom: 30),
             width: double.infinity,
-            child: Image.asset('assets/images/main_image.png'),
+            child: Lottie.asset('assets/images/file.json'),
           ),
           Expanded(
             child: Stack(
@@ -79,71 +69,72 @@ class FileDetails extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Product Name',
+                              'File Name',
                               style: GoogleFonts.poppins(
                                 fontSize: 22,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                             Text(
-                              '\$135.00',
+                              'Booked Up',
                               style: GoogleFonts.poppins(
                                 fontSize: 22,
                                 fontWeight: FontWeight.w600,
+                                color: Colors.red
                               ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 15),
                         Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor consectetur tortor vitae interdum.',
+                          'Booked By : ',
                           style: GoogleFonts.poppins(
                             fontSize: 15,
                             color: Colors.grey,
                           ),
                         ),
-                        const SizedBox(height: 15),
-                        Text(
-                          'Similar This',
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 110,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 2,
-                            itemBuilder: (context, index) => Container(
-                              margin: const EdgeInsets.only(right: 6),
-                              width: 110,
-                              height: 110,
+
+
+                        const SizedBox(height: 40),
+                        Center(
+                          child: InkWell(
+                            onTap: () {
+                            },
+                            child: Container(
+                              height: 60,
+                              width: 200,
+                              alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: AppColors.kSmProductBgColor,
-                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all()
                               ),
-                              child: Center(
-                                child: Icon(Icons.file_copy_outlined)
+                              child: Obx(
+                                    () => productController.isAddLoading.value
+                                    ? SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 3,
+                                  ),
+                                )
+                                    //TODO Download File if free
+                                    : Text(
+                                  'Download',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 80),
+
                       ],
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    width: 50,
-                    height: 5,
-                    decoration: BoxDecoration(
-                      color: AppColors.kGreyColor,
-                      borderRadius: BorderRadius.circular(50),
                     ),
                   ),
                 ),
@@ -159,21 +150,6 @@ class FileDetails extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              width: 50,
-              height: 50,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColors.kGreyColor),
-              ),
-              child: Icon(
-                Ionicons.heart_outline,
-                size: 30,
-                color: Colors.grey,
-              ),
-            ),
-            SizedBox(width: 20),
             Expanded(
               child: InkWell(
                 onTap: () {
@@ -195,7 +171,7 @@ class FileDetails extends StatelessWidget {
                       ),
                     )
                         : Text(
-                      '+ Add to Cart',
+                      ' + Add to Cart',
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,

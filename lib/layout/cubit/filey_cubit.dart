@@ -2,6 +2,7 @@
 import 'package:filey/module/cart_screen/cart_screen.dart';
 import 'package:filey/module/groups_screen/groups_screen.dart';
 import 'package:filey/module/reports_screen/reports_screen.dart';
+import 'package:filey/module/uploaded_files_screen/uploaded_files.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -20,6 +21,7 @@ class FileyCubit extends Cubit<FileyState> {
     HomeScreen(),
     GroupsScreen(),
     CartScreen(),
+    UploadedFiles(),
     ReportsScreen(),
   ];
 
